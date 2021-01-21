@@ -11,7 +11,7 @@ setup(
     version='0.9.1b',
     license='MIT',
     description=('(Attempt to) rename multiple files at once without '
-                 'overwriting anything',
+                 'overwriting anything'),
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Kaiwen Wu',
