@@ -1,12 +1,5 @@
 import os
 import itertools
-try:
-    from tqdm import tqdm
-except ImportError:
-    tqdm_found = False
-else:
-    tqdm_found = True
-    import math
 
 
 class UnsafeBatchRenameError(Exception):
@@ -46,22 +39,15 @@ def batch_rename_issafe(AtoB) -> None:
             raise UnsafeBatchRenameError
 
 
-def brename_bf(AtoB, progressbar=False) -> None:
+def brename_bf(AtoB) -> None:
     """
     Try all possible renaming permutation until finding one without confict.
 
     :param AtoB: a list of tuples (from_filename, to_filename)
-    :param progressbar: if True, displays a progress bar that shows the
-           maximum time left; if ``tqdm`` is not available, this keyword
-           argument will be ignored
     :raise UnsafeBatchRenameError: to avoid overwriting any file, you must
            ``touch`` some temporary files, it seems if this error is raised
     """
-    all_permutations = itertools.permutations(AtoB)
-    if tqdm_found and progressbar:
-        all_permutations = tqdm(all_permutations,
-                                total=math.factorial(len(AtoB)))
-    for AtoB_i in all_permutations:
+    for AtoB_i in itertools.permutations(AtoB):
         try:
             batch_rename_issafe(list(AtoB_i))
         except UnsafeBatchRenameError:
