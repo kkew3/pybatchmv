@@ -22,8 +22,5 @@ Sadly the harder case where temporary files is required cannot be solved.
 
 ## How to use `batchmv`
 
-```
-python3 -m pip install batchmv.
-```
-
-and read its docstring to understand how to use.
+It's really simple to use.
+Just read the docstring in [`batchmv.py`](https://github.com/kkew3/pybatchmv/blob/main/batchmv/batchmv.py)
